@@ -3,7 +3,7 @@ package br.com.dazen.model;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-import br.com.dazen.model.types.OperationType;
+import br.com.dazen.model.types.Operation;
 import br.com.dazen.model.types.Ranking;
 
 /**
@@ -19,7 +19,7 @@ public class Role implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Integer id;
-	private OperationType operation;
+	private Operation operation;
 	private Ranking ranking;
 	private BigDecimal aliquot;
 
@@ -31,11 +31,11 @@ public class Role implements Serializable {
 		this.id = id;
 	}
 
-	public OperationType getOperation() {
+	public Operation getOperation() {
 		return operation;
 	}
 
-	public void setOperation(OperationType operation) {
+	public void setOperation(Operation operation) {
 		this.operation = operation;
 	}
 

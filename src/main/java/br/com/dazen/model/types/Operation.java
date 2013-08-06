@@ -6,6 +6,6 @@ package br.com.dazen.model.types;
  * @author Charles Queiroz - charles@dazen.com.br | (85) 9933-1585
  * 
  */
-public enum OperationType {
+public enum Operation {
 	VENDA, TRANSFERENCIA, DOACAO, ANY;
 }
