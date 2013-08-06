@@ -16,12 +16,12 @@ public class InvoiceReport implements Serializable {
 	private Role role;
 	private Boolean isCorrect;
 
-	public Integer getNumber() {
-		return number;
-	}
-
 	public void setNumber(Integer number) {
 		this.number = number;
+	}
+
+	public Integer getNumber() {
+		return number;
 	}
 
 	public Role getRole() {
@@ -32,11 +32,11 @@ public class InvoiceReport implements Serializable {
 		this.role = role;
 	}
 
-	public Boolean getIsCorrect() {
+	public Boolean IsCorrect() {
 		return isCorrect;
 	}
 
-	public void setIsCorrect(Boolean isCorrect) {
+	public void setCorrect(Boolean isCorrect) {
 		this.isCorrect = isCorrect;
 	}
 

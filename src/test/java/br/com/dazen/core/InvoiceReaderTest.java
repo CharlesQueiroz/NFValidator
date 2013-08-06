@@ -3,24 +3,26 @@ package br.com.dazen.core;
 import static org.junit.Assert.assertEquals;
 
 import java.io.File;
-import java.math.BigDecimal;
+import java.util.List;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import br.com.dazen.model.Invoice;
-import br.com.dazen.model.types.Operation;
-import br.com.dazen.model.types.Ranking;
+import br.com.dazen.model.InvoiceReport;
+import br.com.dazen.model.Role;
 
 public class InvoiceReaderTest {
 
-	private static final File FILE = new File("src/test/resources/Invoices.csv");
+	private static final File FILE_INVOICES = new File("src/test/resources/Invoices.csv");
+	private static final File FILE_ROLES = new File("src/test/resources/Roles.csv");
 	private static InvoiceReader invoiceReader;
+	private static List<Role> roles;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		invoiceReader = new InvoiceReader(FILE);
+		roles = new RoleReader(FILE_ROLES).getRoles();
+		invoiceReader = new InvoiceReader(FILE_INVOICES, roles);
 	}
 
 	@AfterClass
@@ -30,40 +32,51 @@ public class InvoiceReaderTest {
 
 	@Test
 	public void testTamanhoDaLista() {
-		assertEquals(5, invoiceReader.getInvoices().size());
+		assertEquals(5, invoiceReader.getReports().size());
 	}
 
 	@Test
-	public void testPrimeiraNotaDaLista() {
-		Invoice invoice = invoiceReader.getInvoices().get(0);
-
-		assertEquals(new Integer(1), invoice.getNumber());
-		assertEquals(Operation.VENDA, invoice.getOperation());
-		assertEquals(Ranking.A, invoice.getRanking());
-		assertEquals(new BigDecimal("1000.00"), invoice.getAmount());
-		assertEquals(new BigDecimal("180.00"), invoice.getAmountOfInvoicePaid());
+	public void testValidacaoPrimeiroRegistro() {
+		InvoiceReport report = new InvoiceReport();
+		report.setNumber(1);
+		report.setRole(roles.get(0));
+		report.setCorrect(true);
+		assertEquals(report, invoiceReader.getReports().get(0));
 	}
 
 	@Test
-	public void testNotaComOperacaoDeTransferencia() {
-		Invoice invoice = invoiceReader.getInvoices().get(1);
-
-		assertEquals(new Integer(2), invoice.getNumber());
-		assertEquals(Operation.TRANSFERENCIA, invoice.getOperation());
-		assertEquals(Ranking.A, invoice.getRanking());
-		assertEquals(new BigDecimal("2000.00"), invoice.getAmount());
-		assertEquals(new BigDecimal("360.00"), invoice.getAmountOfInvoicePaid());
+	public void testValidacaoSegundoRegistro() {
+		InvoiceReport report = new InvoiceReport();
+		report.setNumber(2);
+		report.setRole(roles.get(3));
+		report.setCorrect(false);
+		assertEquals(report, invoiceReader.getReports().get(1));
 	}
 
 	@Test
-	public void testNotaComOperacaoDeDoacao() {
-		Invoice invoice = invoiceReader.getInvoices().get(2);
-
-		assertEquals(new Integer(3), invoice.getNumber());
-		assertEquals(Operation.DOACAO, invoice.getOperation());
-		assertEquals(Ranking.B, invoice.getRanking());
-		assertEquals(new BigDecimal("500.00"), invoice.getAmount());
-		assertEquals(new BigDecimal("0.00"), invoice.getAmountOfInvoicePaid());
+	public void testValidacaoTerceiroRegistro() {
+		InvoiceReport report = new InvoiceReport();
+		report.setNumber(3);
+		report.setRole(roles.get(4));
+		report.setCorrect(true);
+		assertEquals(report, invoiceReader.getReports().get(2));
 	}
 
+	@Test
+	public void testValidacaoQuartoRegistro() {
+		InvoiceReport report = new InvoiceReport();
+		report.setNumber(4);
+		report.setRole(roles.get(1));
+		report.setCorrect(false);
+		assertEquals(report, invoiceReader.getReports().get(3));
+	}
+
+	@Test
+	public void testValidacaoQuintoRegistro() {
+		InvoiceReport report = new InvoiceReport();
+		report.setNumber(5);
+		report.setRole(roles.get(0));
+		report.setCorrect(false);
+		assertEquals(report, invoiceReader.getReports().get(4));
+	}
 }
