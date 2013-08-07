@@ -26,7 +26,7 @@ public class InvoiceReport implements Serializable {
 	public void setNumber(Integer number) {
 		this.number = number;
 	}
-
+	
 	/**
 	 * Recupera o valor do número da linha do relatório.
 	 * 

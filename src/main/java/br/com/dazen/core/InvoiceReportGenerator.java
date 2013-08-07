@@ -57,7 +57,7 @@ public class InvoiceReportGenerator {
 			CellProcessor[] processors = getProcessors();
 
 			writer.writeHeader(new String[] { "NUMERO", "REGRA", "CORRETO" });
-
+			
 			for (InvoiceReport report : reports) {
 				writer.write(report, header, processors);
 			}

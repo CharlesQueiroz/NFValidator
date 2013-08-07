@@ -51,7 +51,7 @@ public class Invoice implements Serializable {
 	public Operation getOperation() {
 		return operation;
 	}
-
+	
 	/**
 	 * Altera o valor da operação da Nota Fiscal.
 	 * 
