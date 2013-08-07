@@ -45,9 +45,9 @@ public class InvoiceProcessor {
 	 * @param fileToParse
 	 *                O path para o arquivo de Notas Fiscais a ser <strong>Processado</strong>.
 	 * @param roles
-	 *                A lista de regras a ser levado em consideração durante o processamento.
+	 *                A lista de regras a ser levado em consideracao durante o processamento.
 	 * @throws ParserException
-	 *                 Uma excessão caso não seja possivel realizar o parser do arquivo.
+	 *                 Uma excessao caso nao seja possivel realizar o parser do arquivo.
 	 */
 	public InvoiceProcessor(File fileToParse, List<Role> roles) throws ParserException {
 		reports = new ArrayList<>();
@@ -90,10 +90,10 @@ public class InvoiceProcessor {
 	}
 
 	/**
-	 * Método que recupera uma lista de resultados já processados durante a carga das notas fiscais.
-	 * A validação dos calculos é feita <strong>DURANTE</strong> a carga do arquivo de Notas Fiscais.
+	 * Método que recupera uma lista de resultados ja processados durante a carga das Notas Fiscais.
+	 * A validacao dos calculos e feita <strong>DURANTE</strong> a carga do arquivo de Notas Fiscais.
 	 * 
-	 * @return Uma lista com os registros que irão compor o arquivo final.
+	 * @return Uma lista com os registros que irao compor o arquivo final.
 	 */
 	public List<InvoiceReport> getReports() {
 		return reports;
